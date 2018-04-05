@@ -17,7 +17,7 @@
       $database = new Database();
       $database->doQuery("INSERT INTO posts (user_id, post, time) VALUES (" .
         $_SESSION["user-id"] . ", " . $database->pdo->quote($_POST["new-post-input"]) . ", NOW())");
-        $_SESSION["parameters"] = "/the-stack/1";
+        $_SESSION["returnUrl"] = "/the-stack/1";
         unset($_SESSION["POST"]);
     } else {
       $_SESSION["error"] = "Érvénytelen hozzászólás!";

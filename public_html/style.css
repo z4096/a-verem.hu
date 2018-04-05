@@ -46,9 +46,7 @@ article {
 
 input, textarea {  
   padding: 8px 8px 8px 8px;
-  /*margin: 8px 0px 8px 0px;*/
   border: 0px dashed grey;
-  /*border-radius: 3px;*/
   background-color: #637180;
   color: white;
 }
@@ -65,8 +63,7 @@ button {
   height: 48px;
   margin: 2px 0px 2px 0px;
   font-size: 16px;
-  font-family: "Titillium Web", sans-serif;      
-  /*border-radius: 3px;*/
+  font-family: "Titillium Web", sans-serif; 
   border: 0px;   
   color: white; 
 }
@@ -159,6 +156,7 @@ aside {
 
 aside .option {
   display: block;
+  margin: 16px 0px 16px 0px;
   padding: 16px 0px 16px 16px;
   text-decoration: none;
   color: lightslategray;
@@ -167,12 +165,14 @@ aside .option {
 aside .option:first-child {margin-top: 28px;}
 
 aside .option:hover {
+  border-radius: 3px;
   background-color: white;
   color: lightslategray;
 }
 
 aside .selected {
   border: 1px solid white;
+  border-radius: 3px;
   background-color: lightslategray;
   color: white;
 }
@@ -184,6 +184,7 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
   margin-top: 24px;
   padding: 8px 8px 8px 8px;
   border: 1px solid white;
+  border-radius: 3px;
   background-color: lightslategray;
   color: white;
 }
@@ -218,13 +219,7 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
 #login-article {
   display: table-cell;
   width: 1024px;
-  /*width: calc(100% - 232px);
-  margin: 0px 8px 0px 8px;
-  padding: 0px 8px 0px 8px;
-  color: darkslategray;*/
 }
-
-/*#login-article form {margin-top: 12px;}*/
 
 #login-article .input {width: 97.8%;}
 
@@ -253,10 +248,7 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
 }
 
 #topics-article {
-  /*width: calc(100% - 0px);*/
   padding: 0px 8px 0px 8px;
-  /*border-left: 1px solid white;
-  border-right: 1px solid white;*/
   background-color: #243d3d;
   color: lightslategray;
 }
@@ -282,8 +274,6 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
 #topics-article .post-header .left-side .user {color: lightgreen;}
 
 #topics-article .post-header .left-side .reply {color: lightsteelblue;}
-
-/*#topics-article .post {color: lightblue;}*/
 
 #topics-article .post-header .right-side {
   font-family: "Titillium Web", sans-serif;
@@ -320,23 +310,6 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
   color: lightsteelblue;
 }
 
-/*#topics-article .separator {
-  width: 100%;
-  height: 0px;
-  margin-top: 24px;  
-  margin-bottom: 24px;
-  background-color: #243d3d;
-  border-top: 1px solid white;
-}*/
-
-/*#topics-article .input-error {background-color: lightpink;}*/
-
-/*#topics-article .error {
-  margin-top: 8px;
-  line-height: 36px;
-  color: red;
-}*/
-
 #topics-article .pager-bar {
   display: table;
   width: 50%;
@@ -347,6 +320,7 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
   font-family: "Titillium Web", sans-serif;
   font-weight: bold;
   border: 1px solid white;
+  border-radius: 2px;
   background-color: lightslategray;
 }
 
@@ -398,6 +372,7 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
   margin-top: 24px;
   padding: 24px 0px 24px 0px;
   border: 1px solid white;
+  border-radius: 3px;
   background-color: lightslategray;
   color: white;
 }
@@ -406,41 +381,6 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
   background-color: white;
   color: lightslategray;
 }
-
-/*.content-box {
-  
-  font-family: "Titillium Web", sans-serif;
-  margin-top: 24px;
-  padding: 8px 8px 8px 8px;
-  border: 1px solid white;
-  background-color: lightslategray;
-  color: white;
-}*/
-
-/*#topics-article .user {color: green;}
-
-#topics-article .new {color: darkslategray;}
-
-#topics-article .title {
-  display: block;
-  color: red;
-}
-
-#topics-article .time {
-  display: inline-block;
-  color: darkslategray;
-}
-
-/*#topics-article .new-post {
-  display: block;
-  text-decoration: none;
-  text-align: center;  
-  font-family: "Titillium Web", sans-serif;
-  font-size: 18px;
-  color: darkred;
-}
-
-#topics-article .new-post:hover {color: red;}*/
 
 #topics-article .input {width: 98.1%;}
 
@@ -486,23 +426,3 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
   width: 100%;
   height: 100%;
 }
-
-/*#topics-article .topic {text-decoration: none;}
-
-#topics-article .topic .title {color: red;}
-
-#topics-article .topic .user {
-  display: inline-block;
-  color: green;
-}
-
-#topics-article .topic .time {
-  display: inline-block;
-  color: darkslategray;
-}
-
-#topics-article .topic:hover .title {color: darkred;}
-
-#topics-article .topic:hover .user {color: darkgreen;}
-
-#topics-article .topic:hover .time {color: black;}*/

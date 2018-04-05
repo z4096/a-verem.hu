@@ -90,7 +90,7 @@
     $post = str_replace("[B]", "<b>", $post);
     $post = str_replace("[/B]", "</b>", $post);
     $post = str_replace("[I]", "<i>", $post);
-    $post = str_replace("[/I]", "</>", $post);
+    $post = str_replace("[/I]", "</i>", $post);
     for ($post = str_replace("[/LINK]", "</a>", $post); $this->parseLink($post); );
     while ($this->parseImage($post));
     while ($this->parseYoutube($post));
