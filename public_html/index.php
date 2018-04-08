@@ -41,7 +41,6 @@ if (!isset($parameters[1]) || $parameters[1] == "") {
 <!doctype html>
 <html lang="hu">  
   <head>
-    <meta charset="utf-8">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<title>A-Verem.hu</title>
 	<meta http-equiv="Cache-Control" content="max-age=3600"/>
@@ -50,10 +49,11 @@ if (!isset($parameters[1]) || $parameters[1] == "") {
 	<meta name="Generator" content="Brackets"/>
 	<meta name="Author" content=""/>
 	<meta name="Keywords" content=""/>
-	<meta name="Descrcarpetiption" content=""/>
-    <link href="https://fonts.googleapis.com/css?family=Taviraj|Titillium+Web|Material+Icons" rel="stylesheet"/>
-    <link href="/style.css" rel="stylesheet" type="text/css"/>
-    <link href="/images/favicon.ico" rel="icon" type="image/x-icon"/>
+	<meta name="Description" content=""/>
+    <link rel="icon" href="/images/favicon.ico"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Taviraj|Titillium+Web|Material+Icons"/>
+    <link rel="stylesheet" media="screen and (min-width: 1001px)" href="/big-screen.css"/>
+    <link rel="stylesheet" media="screen and (max-width: 1000px)" href="/small-screen.css"/>
   </head>
   <body>
     <div id="body-container">      
