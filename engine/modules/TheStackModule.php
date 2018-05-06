@@ -29,9 +29,9 @@
             <div class="left-side">
               <span class="title"><?php echo $topicRow[$index]["id"] ?>. </span>
               <span class="user"><?php echo $topicRow[$index]["name"] ?> </span>
-              <span class="title">: <?php echo $date[0] . " " . $date[1] ?></span>
+              <span class="title"><br/><?php echo $date[0] . " " . $date[1] ?></span>
               <?php if ($topicRow[$index]["reply_id"]): ?>
-                <span class="reply"> (<?php echo $topicRow[$index]["reply_id"] ?>. hozzászólásra válasz)</span>
+                <br/><span class="reply"> (<?php echo $topicRow[$index]["reply_id"] ?>. hozzászólásra válasz)</span>
               <?php endif; ?>
             </div>
             <?php if (isset($_SESSION["user-id"])):
@@ -54,34 +54,12 @@
             <div class="post-edited">szerkesztve: <?php echo $date[0] . " " . $date[1] ?></div>
           <?php endif; ?>
         </section>
-      <?php endfor; ?>            
-      <!--<?php echo "Karakterek: a á e é i í o ó ö ő ü ű "; ?>
-      <script>document.write(document.getElementById("body-container").clientWidth);</script>
-      a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a 
-      <div class="separator"></div>
-      <div class="header">
-        <span class="user">zoltan</span>
-        <span class="time"> : tegnap 07:56</span>
-      </div>
-      <div class="youtube-container">
-        <iframe src="https://www.youtube.com/embed/oOFB_SJEa-Q" frameborder="0"
-          allow="autoplay; encrypted-media" allowfullscreen class="video">
-        </iframe>
-      </div>
-      A novella angolul letölthető <a href="https://bristolsf.files.wordpress.com/2016/04/the-belonging-kind-gibson-and-shirley.pdf">innen</a>, illetve magyar nyelven is olvasható <a href="http://utveszto.uw.hu/os/barnepseg.html">ezen az egyébként elég ordenáré oldalon</a>.
-      <div class="separator"></div>
-      <div class="header">
-        <span class="user">zoltan_bakonyi</span>
-        <span class="time"> : 2018-01-15</span>
-      </div>
-      <img src="http://www.nightinthewoods.com/images/screenshots/screenshot4.jpg" class="picture"/>
-      a a a a a a a a a aaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaaaa aaaaaaaaaaaa aaaaaaaaa-->
+      <?php endfor; ?>
       <div class="content-box-bottom"></div>
       <div class="pager-bar-bottom">
         <?php if ($pages != $parameters[2]) $pagerBar->render($pages, $parameters[2]); ?>
       </div>
     </article>
-    <script src="/scripts/wrapper-height.js"></script>
     <?php $_SESSION["previousUrl"] = "/the-stack/" . $parameters[2];   
   }
   
@@ -109,7 +87,7 @@
     if (($start = strpos($post, "[IMAGE]")) === false) return false;    
     $end = strpos($post, "[/IMAGE]") + 8;
     $post = substr_replace($post,
-      "<img src='" . substr($post, $start + 7, $end - $start - 15) . "'>", $start, $end - $start);
+      "<img src='" . substr($post, $start + 7, $end - $start - 15) . "' class='image'>", $start, $end - $start);
     return true;
   }
   

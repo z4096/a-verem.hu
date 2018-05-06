@@ -1,7 +1,10 @@
 <?php class PasswordSenderModule extends Module {		
   
   public function render(&$parameters) { ?>
-    <div class="sidebar-page">    
+    <div class="sidebar-page">
+      <div id="aside-row">
+        <?php (new LoginSidebar())->render($parameters); ?>
+      </div>
       <article id="login-article">
         <section class="content-box">
           <?php if (isset($_SESSION["error"])): ?>
@@ -23,9 +26,7 @@
         </section>
         <div class="content-box-bottom"></div>
       </article>
-      <?php (new LoginSidebar())->render($parameters); ?>
     </div>
-    <script src="/scripts/sidebar-height.js"></script>
     <?php unset($_SESSION["error"]);   
     unset($_SESSION["error-field"]);
     unset($_SESSION["POST"]);

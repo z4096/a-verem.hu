@@ -2,37 +2,45 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #243d3d;
+  background-color: #182929;
 }
 
-#body-container {min-height: calc(100% - 140px);}
+#body-container {min-height: calc(100% - 70px);}
 
 nav {
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid white;
   background-color: darkslategray;
 }
 
-main {margin: auto;}
+main {
+  max-width: 1024px;
+  margin: auto;
+}
 
 #footer-container {
-  height: 140px;
-  border-top: 2px solid white;
+  height: 70px;
+  border-top: 1px solid white;
   background-color: darkslategray;
 }
 
 footer {
+  max-width: 1024px;
   margin: auto;
   color: white;
-  font-size: 40px;
 }
 
 article, input, textarea {
   font-family: "Taviraj", serif;
-  font-size: 40px;
+  font-size: 16px;
   color: darkslategray;
 }
 
 #sidebar-page {display: table;}
+
+article {
+  max-width: 1024px;
+  padding: 0px 8px 0px 8px;
+}
 
 input, textarea {
   padding: 8px 8px 8px 8px;
@@ -52,8 +60,8 @@ button {
   cursor: pointer;
   height: 48px;
   margin: 2px 0px 2px 0px;
-  font-family: "Titillium Web", sans-serif;
   font-size: 16px;
+  font-family: "Titillium Web", sans-serif;
   border: 0px;
   color: white;
 }
@@ -75,25 +83,18 @@ button::-moz-focus-inner, a::-moz-focus-inner {border: none;}
 
 .cancel-button:hover {background-color: red;}
 
-input[type="checkbox"] {
-  cursor: pointer;
-  vertical-align: middle;
-  width: 18px;
-  height: 18px;
-}
-
 #logo-link {margin: auto;}
 
 #logo-image {
-  width: 80%;
+  width: 100%;
   height: auto;
-  /*max-width: 386px;
-  max-height: 82px;*/
+  max-width: 386px;
+  max-height: 82px;
 }
 
 nav ul {
   display: table;
-  width: 100%;
+  max-width: 1024px;
   padding: 0;
   right: 0;
   margin: auto;
@@ -101,27 +102,36 @@ nav ul {
 }
 
 nav li {
-  display: table-row;
-  text-align: left;
-  /*width: 326px;*/
+  display: table-cell;
+  width: 326px;
+}
+
+@media screen and (max-width: 1000px) {
+  nav li {display: table-row;}
+}
+
+@media screen and (max-width: 1000px) {
+  nav li:last-child {
+    line-height: 64px;
+    height: 64px;
+  }
 }
 
 nav li:first-child {
   width: 1024px;
   position: relative;
   top: 4px;
-  /*text-align: left;*/
+  text-align: left;
 }
 
 nav a {
   display: inline-block;
   cursor: pointer;
   width: 100%;
-  /*padding-left: 16px; */
-  height: 128px;
-  line-height: 128px;
+  height: 48px;
+  line-height: 48px;
   font-family: "Titillium Web", sans-serif;
-  font-size: 48px;
+  font-size: 20px;
   text-decoration: none;
   color: white;
 }
@@ -129,21 +139,31 @@ nav a {
 nav .icon {
   position: relative;
   bottom: 2px;
-  padding-left: 16px;
-  font-size: 56px;
-  line-height: 56px;
+  font-size: 24px;
+  line-height: 48px;
   vertical-align: middle;
+}
+
+@media screen and (min-width: 1001px) {
+  #aside-row {
+    display: table-cell;
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #aside-row {display: table-row;}
 }
 
 aside {
   display: table-cell;
-  width: 200px;
+  width: 300px;
   /*margin: 0px 8px 0px 8px;*/
   padding: 0px 8px 0px 8px;
   font-family: "Titillium Web", sans-serif;
   font-size: 18px;
   font-weight: bold;
-  background-color: #243d3d;
+  background-color: #182929;
 }
 
 aside .option {
@@ -152,6 +172,10 @@ aside .option {
   padding: 16px 0px 16px 16px;
   text-decoration: none;
   color: lightslategray;
+}
+
+@media screen and (max-width: 1000px) {
+  aside .option {text-align: center;}
 }
 
 aside .option:first-child {margin-top: 28px;}
@@ -173,22 +197,15 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
 
 .content-box {
   font-family: "Taviraj", serif;
-  /*margin-top: 24px;*/
-  padding: 32px 8px 32px 8px;
-  border-bottom: 2px solid white;
+  margin-top: 24px;
+  padding: 8px 8px 8px 8px;
+  border: 1px solid white;
+  border-radius: 3px;
   background-color: lightslategray;
   color: white;
 }
 
-/*.content-box:first-child {
-  border-top: 2px solid white;
-}*/
-
-/*.content-box-bottom {
-  position: relative;
-  top: -2px;
-  height: 0px;
-}*/
+.content-box-bottom {height: 24px;}
 
 .input-error {background-color: lightpink;}
 
@@ -202,7 +219,7 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
 #welcome .the-stack {
   display: block;
   max-width: 1024px;
-  padding: 32px 0px 32px 0px;
+  padding: 16px 0px 16px 0px;
   font-family: "Titillium Web", sans-serif;
   font-weight: bold;
   text-decoration: none;
@@ -215,11 +232,22 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
   color: lightslategray;
 }
 
-#login-article {display: table-cell;}
+#login-article {
+  display: table-cell;
+  width: 1024px;
+}
 
 #login-article .input {width: 97.8%;}
 
+@media screen and (max-width: 1000px) {
+  #login-article .input {width: 95%;}
+}
+
 #login-article .button {width: 49.7%;}
+
+@media screen and (max-width: 1000px) {
+  #login-article .button {width: 49.2%;}
+}
 
 #login-article .message {padding: 12px 0px 12px 0px;}
 
@@ -243,16 +271,20 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
   width: 97.4%;
 }
 
+@media screen and (max-width: 1000px) {
+  #login-article .settings .row .right-side {width: 92%;}
+}
+
 #topics-article {
-  /*padding: 0px 8px 0px 8px;*/
-  background-color: #243d3d;
+  padding: 0px 8px 0px 8px;
+  background-color: #182929;
   color: lightslategray;
 }
 
 #topics-article .not-found {
-  padding: 24px 0px 0px 16px;
+  padding-top: 24px;
   font-family: "Titillium Web", sans-serif;
-  font-size: 56px;
+  font-size: 20px;
 }
 
 #topics-article .post-header {
@@ -284,6 +316,7 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
 
 #topics-article .post-header .right-side {
   display: table-cell;
+  vertical-align: middle;
   padding: 0px 16px 0px 16px;
   white-space: nowrap;
   color: white;
@@ -308,28 +341,31 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
 
 #topics-article .pager-bar {
   display: table;
-  width: 100%;
+  width: 50%;
   margin: auto;
   margin-bottom: 0px;
   padding: 0px;
   text-align: center;
   font-family: "Titillium Web", sans-serif;
   font-weight: bold;
-  /*border-bottom: 2px solid white;*/
+  border: 1px solid white;
+  border-radius: 2px;
   background-color: lightslategray;
 }
 
+@media screen and (max-width: 1000px) {
+  #topics-article .pager-bar {width: 100%;}
+}
+
 #topics-article .pager-bar-top {
-  /*position: relative;
-  top: -1px;*/
-  border-bottom: 2px solid white;
+  position: relative;
+  top: -1px;
 }
 
 #topics-article .pager-bar-bottom {
-  /*position: relative;
-  bottom: -1px;
-  margin-bottom: -10px;*/
-  height: 88px;
+  position: relative;
+  bottom: -2px;
+  margin-bottom: 1px;
 }
 
 #topics-article .pager-bar .side {display: table-cell;}
@@ -337,12 +373,12 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
 #topics-article .pager-bar .arrow {
   display: table-cell;
   width: 17%;
-  font-size: 48px;
+  font-size: 20px;
   text-decoration: none;
   color: white;
 }
 
-#topics-article .pager-bar .border {border-right: 2px solid white;}
+#topics-article .pager-bar .border {border-right: 1px solid white;}
 
 #topics-article .pager-bar .arrow:hover {
   background-color: white;
@@ -353,9 +389,9 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
   display: table-cell;
   width: 32%;
   padding: 8px 0px 8px 0px;
-  font-size: 48px;
-  border-left: 2px solid white;
-  border-right: 2px solid white;
+  font-size: 18px;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
   color: lightblue;
 }
 
@@ -381,9 +417,17 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
 
 #topics-article .input {width: 98.1%;}
 
+@media screen and (max-width: 1000px) {
+  #topics-article .input {width: 95%;}
+}
+
 #topics-article .new-post-button {
   width: 19.65%;
   background-color: darkblue;
+}
+
+@media screen and (max-width: 1000px) {
+  #topics-article .new-post-button {width: 18.9%;}
 }
 
 #topics-article .new-post-button:hover {background-color: blue;}
@@ -393,6 +437,10 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
 #topics-article #new-post-italic {font-style: italic;}
 
 #topics-article .post-button {width: 49.7%;}
+
+@media screen and (max-width: 1000px) {
+  #topics-article .post-button {width: 49%;}
+}
 
 #topics-article .link {
   font-family: "Titillium Web", sans-serif;
@@ -405,7 +453,7 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
   color: lightslategray;
 }
 
-#topics-article .picture {
+#topics-article .image {
   display: block;
   max-width: 100%;
   margin: 8px 0px 8px 0px;

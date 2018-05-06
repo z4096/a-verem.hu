@@ -10,9 +10,8 @@
           <?php (new PostBody())->render(); ?>        
         </form>
       </section>
-      <div class="section-bottom"></div>
-    </article>  
-    <script src="/scripts/wrapper-height.js"></script>
+      <div class="content-box-bottom"></div>
+    </article>
     <?php unset($_SESSION["error"]);          
     unset($_SESSION["error-field"]);
     unset($_SESSION["POST"]);

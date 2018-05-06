@@ -50,10 +50,10 @@ if (!isset($parameters[1]) || $parameters[1] == "") {
 	<meta name="Author" content=""/>
 	<meta name="Keywords" content=""/>
 	<meta name="Description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" href="/images/favicon.ico"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Taviraj|Titillium+Web|Material+Icons"/>
-    <link rel="stylesheet" media="screen and (min-width: 1001px)" href="/big-screen.css"/>
-    <link rel="stylesheet" media="screen and (max-width: 1000px)" href="/small-screen.css"/>
+    <link rel="stylesheet" href="/style.css"/>
   </head>
   <body>
     <div id="body-container">      

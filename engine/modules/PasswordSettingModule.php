@@ -2,6 +2,9 @@
   
   public function render(&$parameters) { ?>    
     <div class="sidebar-page">
+      <div id="aside-row">
+        <?php (new UserSidebar())->render($parameters); ?>
+      </div>
       <article id="login-article">
         <section class="content-box">
           <?php if (isset($_SESSION["error"])): ?>
@@ -25,10 +28,8 @@
           </form>   
         </section>
         <div class="content-box-bottom"></div>
-      </article>  
-      <?php (new UserSidebar())->render($parameters); ?> 
+      </article>
     </div>
-    <script src="/scripts/sidebar-height.js"></script>
     <?php unset($_SESSION["error"]);
     unset($_SESSION["error-field"]);
     unset($_SESSION["POST"]);
