@@ -329,6 +329,7 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
 
 #topics-article .post-header .right-comment {
   display: table-cell;
+  vertical-align: bottom;
   padding-right: 4px;
   color: lightsteelblue;
 }

@@ -21,9 +21,9 @@
           <div class="left-side">
             <span class="title"><?php echo $postRow[0]["id"] ?>. </span>
             <span class="user"><?php echo $postRow[0]["name"] ?> </span>
-            <span class="title">: <?php echo $date[0] . " " . $date[1] ?></span>
+            <br/><span class="title"><?php echo $date[0] . " " . $date[1] ?></span>
             <?php if ($postRow[0]["reply_id"]): ?>
-            <span class="reply"> (<?php echo $postRow[0]["reply_id"] ?>. hozzászólásra válasz)</span>
+              <br/><span class="reply"> (<?php echo $postRow[0]["reply_id"] ?>. hozzászólásra válasz)</span>
             <?php endif; ?>
           </div>
           <span class="center"></span>
@@ -33,9 +33,8 @@
           <?php (new PostBody())->render(); ?>        
         </form>
       </section>
-      <div class="section-bottom"></div>
-    </article>    
-    <script src="/scripts/wrapper-height.js"></script>
+      <div class="content-box-bottom"></div>
+    </article>
     <?php unset($_SESSION["error"]);          
     unset($_SESSION["error-field"]);
     unset($_SESSION["POST"]);

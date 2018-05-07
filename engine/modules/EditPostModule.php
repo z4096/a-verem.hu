@@ -26,9 +26,9 @@
           <div class="left-side">
             <span class="title"><?php echo $postRow[0]["id"] ?>. </span>
             <span class="user"><?php echo $postRow[0]["name"] ?> </span>
-            <span class="title">: <?php echo $date[0] . " " . $date[1] ?></span>
+            <br/><span class="title"><?php echo $date[0] . " " . $date[1] ?></span>
             <?php if ($postRow[0]["reply_id"]): ?>
-              <span class="reply">(<?php echo $postRow[0]["reply_id"] ?> hozzászólásra válasz)</span>
+              <br/><span class="reply">(<?php echo $postRow[0]["reply_id"] ?> hozzászólásra válasz)</span>
             <?php endif; ?>
           </div>
           <div class="center"></div>
@@ -37,9 +37,8 @@
         <form method="post" action="/action/edit-post/<?php echo $parameters[2]; ?>">
           <?php PostBody::render(); ?>        
         </form>
-        <div class="top-bottom"></div>
+        <div class="content-box-bottom"></div>
       </section>
-      <div class="content-box-bottom"></div>
     </article>
     <?php unset($_SESSION["error"]);          
     unset($_SESSION["error-field"]);
