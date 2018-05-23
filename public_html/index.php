@@ -29,10 +29,8 @@ if (!isset($parameters[1]) || $parameters[1] == "") {
       } else notFound();
     } else notFound();
   } else {
-    if ($parameters[1] != "") {
-      $moduleClass = "";
-      foreach (explode("-", $parameters[1]) as $tag) $moduleClass .= ucfirst($tag);
-    } else notFound();
+    $moduleClass = "";
+    foreach (explode("-", $parameters[1]) as $tag) $moduleClass .= ucfirst($tag);
     $moduleClass .= "Module"; 
     if (!class_exists($moduleClass)) notFound();
   }
@@ -41,19 +39,19 @@ if (!isset($parameters[1]) || $parameters[1] == "") {
 <!doctype html>
 <html lang="hu">  
   <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-	<title>A-Verem.hu</title>
-	<meta http-equiv="Cache-Control" content="max-age=3600"/>
-	<meta name="expires" content="NEVER"/>
-	<meta name="revisit-after" content="7 day"/>
-	<meta name="Generator" content="Brackets"/>
-	<meta name="Author" content=""/>
-	<meta name="Keywords" content=""/>
-	<meta name="Description" content=""/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="/images/favicon.ico"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Taviraj|Titillium+Web|Material+Icons"/>
-    <link rel="stylesheet" href="/style.css"/>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <title>A-Verem.hu</title>
+  <meta http-equiv="Cache-Control" content="max-age=3600"/>
+  <meta name="expires" content="NEVER"/>
+  <meta name="revisit-after" content="7 day"/>
+  <meta name="Generator" content="Brackets"/>
+  <meta name="Author" content=""/>
+  <meta name="Keywords" content=""/>
+  <meta name="Description" content=""/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="icon" href="/images/favicon.ico"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Taviraj|Titillium+Web|Material+Icons"/>
+  <link rel="stylesheet" href="/style.css"/>
   </head>
   <body>
     <div id="body-container">      

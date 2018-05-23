@@ -11,8 +11,7 @@
         <a href="/the-stack/1" class="the-stack">Tovább a verembe</a>
       </section>
       <section class="content-box-bottom"></section>
-    </article>  
-    <script src="/scripts/wrapper-height.js"></script>
+    </article>
     <?php $_SESSION["previousUrl"] = "/welcome";   
   }
 } ?>

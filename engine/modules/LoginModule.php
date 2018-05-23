@@ -12,13 +12,13 @@
           <?php endif; ?>
           <form method="post" action="/action/login">
             <div>
-              <input type="email" name="e-mail" placeholder="E-mail cím" 
+              <input type="email" name="e-mail" maxlength="63" placeholder="E-mail cím" 
                 value="<?php if (isset($_SESSION["POST"]["e-mail"])) echo $_SESSION["POST"]["e-mail"]; ?>"
                 class="input <?php if (isset($_SESSION["error-field"]) && $_SESSION["error-field"] === "e-mail")
                   echo "input-error"; ?>"/>
             </div>
             <div>
-              <input type="password" name="password" placeholder="Jelszó"
+              <input type="password" name="password" maxlength="63" placeholder="Jelszó"
                 class="input <?php if (isset($_SESSION["error-field"]) && $_SESSION["error-field"] === "password")
                   echo "input-error"; ?>"/>
             </div>

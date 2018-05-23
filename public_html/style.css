@@ -416,6 +416,8 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
   color: lightslategray;
 }
 
+#topics-article .reply-separator {height: 16px;}
+
 #topics-article .input {width: 98.1%;}
 
 @media screen and (max-width: 1000px) {

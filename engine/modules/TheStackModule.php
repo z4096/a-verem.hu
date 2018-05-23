@@ -8,7 +8,7 @@
     ORDER BY posts.time DESC LIMIT " . (($parameters[2] - 1) * 10) . ", 10");
     if ($parameters[2] != 1 && !$database->countRows()) $this->notFound();
     $topicRow = $database->fetchRows();
-    $database->doQuery("SELECT COUNT(id) AS rows FROM posts"); 
+    $database->doQuery("SELECT COUNT(id) AS 'rows' FROM posts"); 
     $rowCount = $database->fetchRows()[0]["rows"];
     $pages = ($rowCount == 0 ? 1 : intdiv(($rowCount - 1), 10) + 1); ?> 
     <article id="topics-article">      

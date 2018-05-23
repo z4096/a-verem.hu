@@ -12,24 +12,24 @@
           <?php endif; ?>
           <form method="post" action="/action/registration">
             <div>
-              <input type="text" name="name" placeholder="Felhasználónév (maximum 15 karakter)" 
+              <input type="text" name="name" maxlength="15" placeholder="Felhasználónév (maximum 15 karakter)" 
                 value="<?php if (isset($_SESSION["POST"]["name"])) echo $_SESSION["POST"]["name"]; ?>"
                 class="input <?php if (isset($_SESSION["error-field"]) && $_SESSION["error-field"] === "name")
                   echo "input-error"; ?>">
             </div>
             <div>
-              <input type="email" name="e-mail" placeholder="E-mail cím (maximum 63 karakter)" 
+              <input type="email" name="e-mail" maxlength="63" placeholder="E-mail cím (maximum 63 karakter)" 
                 value="<?php if (isset($_SESSION["POST"]["e-mail"])) echo $_SESSION["POST"]["e-mail"]; ?>"
                 class="input <?php if (isset($_SESSION["error-field"]) && $_SESSION["error-field"] === "e-mail")
                   echo "input-error"; ?>">
             </div>
             <div>
-              <input type="password" name="password" placeholder="Jelszó (minimum 8, maximum 63 karakter)"
+              <input type="password" name="password" maxlength="63" placeholder="Jelszó (minimum 8, maximum 63 karakter)"
                 class="input <?php if (isset($_SESSION["error-field"]) && $_SESSION["error-field"] === "password")
                   echo "input-error"; ?>">
             </div>
             <div>
-              <input type="password" name="password-again" placeholder="Jelszó megerősítése"
+              <input type="password" name="password-again" maxlength="63" placeholder="Jelszó megerősítése"
                 class="input <?php if (isset($_SESSION["error-field"]) && $_SESSION["error-field"] === "password")
                   echo "input-error"; ?>">
             </div>

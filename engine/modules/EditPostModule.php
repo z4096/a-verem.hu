@@ -1,7 +1,8 @@
 <?php class EditPostModule extends Module {		
   
-  public function render(&$parameters) { 
-    if (!isset($parameters[2]) || !ctype_digit($parameters[2]) || $parameters[2] == 0) $this->notFound();     
+  public function render(&$parameters) {
+    if (!isset($_SESSION["user-id"]) || !isset($parameters[2]) 
+      || !ctype_digit($parameters[2]) || $parameters[2] == 0) $this->notFound();     
     $database = new Database();
     $database->doQuery("SELECT posts.id, posts.reply_id, posts.post, posts.time, users.name
       FROM posts LEFT JOIN users ON users.id = posts.user_id WHERE posts.id = " . $parameters[2]);
@@ -28,7 +29,7 @@
             <span class="user"><?php echo $postRow[0]["name"] ?> </span>
             <br/><span class="title"><?php echo $date[0] . " " . $date[1] ?></span>
             <?php if ($postRow[0]["reply_id"]): ?>
-              <br/><span class="reply">(<?php echo $postRow[0]["reply_id"] ?> hozzászólásra válasz)</span>
+              <br/><span class="reply">(<?php echo $postRow[0]["reply_id"] ?>. hozzászólásra válasz)</span>
             <?php endif; ?>
           </div>
           <div class="center"></div>
@@ -36,9 +37,9 @@
         </div>      
         <form method="post" action="/action/edit-post/<?php echo $parameters[2]; ?>">
           <?php PostBody::render(); ?>        
-        </form>
-        <div class="content-box-bottom"></div>
+        </form>        
       </section>
+      <div class="content-box-bottom"></div>
     </article>
     <?php unset($_SESSION["error"]);          
     unset($_SESSION["error-field"]);
