@@ -18,7 +18,7 @@
       $database->doQuery("DELETE FROM temporary_password WHERE password_time < DATE_SUB(NOW(), INTERVAL 1 HOUR)");
       $database->doQuery("SELECT id FROM users WHERE email = '" . $_POST["e-mail"] . "'");
       if ($database->countRows()) {
-        $keyspace = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $keyspace = "123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ";
         $password = "";
         for ($index = 8; $index--; ) $password .= $keyspace[random_int(0, strlen($keyspace))];
         $dataRow = $database->fetchRows();

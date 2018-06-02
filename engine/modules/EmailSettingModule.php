@@ -10,9 +10,6 @@
       $_SESSION["POST"]["e-mail"] = $database->fetchRows()[0]["email"];
     } ?>    
     <div class="sidebar-page">
-      <div id="aside-row">
-        <?php (new UserSidebar())->render($parameters); ?>
-      </div>
       <article id="login-article">
         <section class="content-box">
           <?php if (isset($_SESSION["error"])): ?>

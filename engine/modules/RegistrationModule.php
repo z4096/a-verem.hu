@@ -1,10 +1,7 @@
 <?php class RegistrationModule extends Module {		
   
   public function render(&$parameters) { ?>
-    <div class="sidebar-page"> 
-      <div id="aside-row">
-        <?php (new LoginSidebar())->render($parameters); ?>
-      </div>
+    <div class="sidebar-page">
       <article id="login-article">
         <section class="content-box">
           <?php if (isset($_SESSION["error"])): ?>

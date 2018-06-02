@@ -124,7 +124,8 @@ nav li:first-child {
   text-align: left;
 }
 
-nav a {
+
+nav span {
   display: inline-block;
   cursor: pointer;
   width: 100%;
@@ -136,6 +137,71 @@ nav a {
   color: white;
 }
 
+@media screen and (min-width: 1001px) {
+  nav span {
+    border: 1px solid darkslategray;
+    border-bottom: 0px;
+    border-radius: 3px 3px 0px 0px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  nav span {border-top: 1px solid darkslategray;}
+}
+
+nav .dropdown {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+nav .dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: calc(100% - 48px);
+  padding: 12px 24px 16px 24px;
+  z-index: 1;
+  background-color: darkslategray;
+}
+
+@media screen and (min-width: 1001px) {
+  nav .dropdown .dropdown-content {
+    border: 1px solid white;
+    border-top: 0px;
+    border-radius: 0px 0px 3px 3px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  nav .dropdown .dropdown-content {border-bottom: 1px solid white;}
+}
+
+nav .dropdown .dropdown-content a {
+  display: block;
+  font-family: "Titillium Web", sans-serif;
+  text-align: left;
+  text-decoration: none;
+  color: white;
+}
+
+@media screen and (min-width: 1001px) {
+  nav .dropdown .dropdown-content a {
+    height: 48px;
+    line-height: 48px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  nav .dropdown .dropdown-content a {
+    height: 64px;
+    line-height: 64px;
+    font-size: 20px;
+  }
+}
+
+nav .dropdown .dropdown-content a:hover {color: skyblue;}
+
 nav .icon {
   position: relative;
   bottom: 2px;
@@ -143,57 +209,6 @@ nav .icon {
   line-height: 48px;
   vertical-align: middle;
 }
-
-@media screen and (min-width: 1001px) {
-  #aside-row {
-    display: table-cell;
-    width: 300px;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  #aside-row {display: table-row;}
-}
-
-aside {
-  display: table-cell;
-  width: 300px;
-  /*margin: 0px 8px 0px 8px;*/
-  padding: 0px 8px 0px 8px;
-  font-family: "Titillium Web", sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: #182929;
-}
-
-aside .option {
-  display: block;
-  margin: 16px 0px 16px 0px;
-  padding: 16px 0px 16px 16px;
-  text-decoration: none;
-  color: lightslategray;
-}
-
-@media screen and (max-width: 1000px) {
-  aside .option {text-align: center;}
-}
-
-aside .option:first-child {margin-top: 28px;}
-
-aside .option:hover {
-  border-radius: 3px;
-  background-color: white;
-  color: lightslategray;
-}
-
-aside .selected {
-  border: 1px solid white;
-  border-radius: 3px;
-  background-color: lightslategray;
-  color: white;
-}
-
-aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
 
 .content-box {
   font-family: "Taviraj", serif;
@@ -237,19 +252,21 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
   width: 1024px;
 }
 
-#login-article .input {width: 97.8%;}
+@media screen and (min-width: 1001px) {
+  #login-article .input {width: 98.2%;}
+}
 
 @media screen and (max-width: 1000px) {
   #login-article .input {width: 95%;}
 }
 
-#login-article .button {width: 49.7%;}
+@media screen and (min-width: 1001px) {
+  #login-article .button {width: 49.7%;}
+}
 
 @media screen and (max-width: 1000px) {
   #login-article .button {width: 49.2%;}
 }
-
-#login-article .message {padding: 12px 0px 12px 0px;}
 
 #login-article .settings {display: table;}
 
@@ -266,9 +283,10 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
   padding: 12px 0px 12px 4px;
 }
 
-#login-article .settings .row .right-side {
-  display: table-cell;
-  width: 97.4%;
+#login-article .settings .row .right-side {display: table-cell;}
+
+@media screen and (min-width: 1001px) {
+  #login-article .settings .row .right-side {width: 97.9%;}
 }
 
 @media screen and (max-width: 1000px) {
@@ -444,6 +462,8 @@ aside .row:hover .arrow, aside .row:hover .article {color: indianred;}
 @media screen and (max-width: 1000px) {
   #topics-article .post-button {width: 49%;}
 }
+
+#topics-article .post {word-break: break-word;}
 
 #topics-article .link {
   font-family: "Titillium Web", sans-serif;

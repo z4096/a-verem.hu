@@ -2,9 +2,6 @@
   
   public function render(&$parameters) { ?>
     <div class="sidebar-page">
-      <div id="aside-row">
-        <?php (new LoginSidebar())->render($parameters); ?>
-      </div>
       <article id="login-article">
         <section class="content-box">
           <?php if (isset($_SESSION["error"])): ?>
