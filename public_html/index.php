@@ -31,13 +31,13 @@ if (!isset($parameters[1]) || $parameters[1] == "") {
   } else {
     $moduleClass = "";
     foreach (explode("-", $parameters[1]) as $tag) $moduleClass .= ucfirst($tag);
-    $moduleClass .= "Module"; 
+    $moduleClass .= "Module";
     if (!class_exists($moduleClass)) notFound();
   }
 } else notFound(); ?>
-  
+
 <!doctype html>
-<html lang="hu">  
+<html lang="hu">
   <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   <title>A-Verem.hu</title>
@@ -54,18 +54,19 @@ if (!isset($parameters[1]) || $parameters[1] == "") {
   <link rel="stylesheet" href="/style.css"/>
   </head>
   <body>
-    <div id="body-container">      
+    <div id="body-container">
       <nav>
         <?php (new NavigationBar())->render(); ?>
       </nav>
-      <main>     
+      <main>
         <?php (new $moduleClass())->render($parameters); ?>
       </main>
     </div>
     <div id="footer-container">
       <footer>
         ©Copyright 2050 by nobody. All rights reversed.
-      </footer>    
-    </div>    
+      </footer>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js"></script>
   </body>
 </html>
