@@ -1,6 +1,6 @@
 function navToggleDiv(divId, spanId) {
   var dropdown = document.getElementById(divId);
-  dropdown.style.display = dropdown.style.display === "block" ? "none" : "block"; 
+  dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
   var span = document.getElementById(spanId);
   if (span.style.backgroundColor === "") {
     span.style.backgroundColor = "darkslategray";
@@ -18,17 +18,20 @@ function navToggleDiv(divId, spanId) {
 function navHideDiv(event, dropdownClass, divId, spanId) {
   if (!event.target.matches(dropdownClass)) {
     document.getElementById(divId).style.display = "none";
-    
-    var span = document.getElementById(spanId);  
+
+    var span = document.getElementById(spanId);
     span.style.backgroundColor = "";
     span.style.borderColor = "darkslategray";
-    
+
     /*document.getElementById(spanId).style.backgroundColor = "";*/
   }
 }
 
-window.onclick = function(event) {navHideDiv(event, ".dropdown-menu", "menu-div", "menu-span");};
-document.onkeydown = function(event) {
-  if (event.keyCode == 27) navHideDiv(event, ".dropdown-menu", "menu-div", "menu-span"); 
-};
-document.getElementById("menu-span").onclick = function() {navToggleDiv("menu-div", "menu-span");};
+var menuSpan = document.getElementById("menu-span");
+if (menuSpan) {
+  window.onclick = function(event) {navHideDiv(event, ".dropdown-menu", "menu-div", "menu-span");};
+  document.onkeydown = function(event) {
+    if (event.keyCode == 27) navHideDiv(event, ".dropdown-menu", "menu-div", "menu-span");
+  };
+  menuSpan.onclick = function() {navToggleDiv("menu-div", "menu-span");};
+}

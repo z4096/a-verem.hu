@@ -1,6 +1,6 @@
-<?php class WelcomeModule extends Module {		
-  
-  public function render(&$parameters) { ?>    
+<?php class WelcomeModule extends Module {
+
+  public function render(&$parameters) { ?>
     <article id="welcome">
       <section class="content-box">
         Üdvözlet!<br/>
@@ -12,6 +12,6 @@
       </section>
       <section class="content-box-bottom"></section>
     </article>
-    <?php $_SESSION["previousUrl"] = "/welcome";   
+    <?php $_SESSION["previousUrl"] = "/welcome";
   }
 } ?>

@@ -1,10 +1,11 @@
-<?php class Session {	
+<?php class Session {
 
   public function run() {
-    session_start(); 
-    if (!isset($_SESSION["user-id"]) && isset($_COOKIE["user_data"])) {         
+    if (!isset($_COOKIE["cookiebar"]) || $_COOKIE["cookiebar"] != "CookieAllowed") return;
+    session_start();
+    if (!isset($_SESSION["user-id"]) && isset($_COOKIE["user_data"])) {
       $database = new Database();
-      $userData = json_decode($_COOKIE["user_data"], true);      
+      $userData = json_decode($_COOKIE["user_data"], true);
       $database->doQuery("SELECT id, password_hash FROM users WHERE name='" . $userData["user"] . "'");
       if ($database->countRows()) {
         $dataRows = $database->fetchRows();
@@ -16,10 +17,10 @@
       } else $this->logout();
     }
   }
-  
+
   private function logout() {
-    session_destroy();    
-    setcookie("user_data", "", time() - 3600, "/");    
+    session_destroy();
+    setcookie("user_data", "", time() - 3600, "/");
     session_start();
   }
 } ?>

@@ -120,7 +120,7 @@ nav li {
 nav li:first-child {
   width: 1024px;
   position: relative;
-  top: 4px;
+  padding: 4px 0px 12px 0px;
   text-align: left;
 }
 
@@ -292,6 +292,20 @@ nav .icon {
 @media screen and (max-width: 1000px) {
   #login-article .settings .row .right-side {width: 92%;}
 }
+
+#login-article #allow-cookie {
+  display: inline;
+  vertical-align: middle;
+}
+
+#login-article #allow-cookie-span {line-height: 48px;}
+
+#login-article #allow-storage {
+  display: inline;
+  vertical-align: middle;
+}
+
+#login-article #allow-storage-span {line-height: 48px;}
 
 #topics-article {
   padding: 0px 8px 0px 8px;

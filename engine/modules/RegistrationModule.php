@@ -1,5 +1,5 @@
-<?php class RegistrationModule extends Module {		
-  
+<?php class RegistrationModule extends Module {
+
   public function render(&$parameters) { ?>
     <div class="sidebar-page">
       <article id="login-article">
@@ -9,13 +9,13 @@
           <?php endif; ?>
           <form method="post" action="/action/registration">
             <div>
-              <input type="text" name="name" maxlength="15" placeholder="Felhasználónév (maximum 15 karakter)" 
+              <input type="text" name="name" maxlength="15" placeholder="Felhasználónév (maximum 15 karakter)"
                 value="<?php if (isset($_SESSION["POST"]["name"])) echo $_SESSION["POST"]["name"]; ?>"
                 class="input <?php if (isset($_SESSION["error-field"]) && $_SESSION["error-field"] === "name")
                   echo "input-error"; ?>">
             </div>
             <div>
-              <input type="email" name="e-mail" maxlength="63" placeholder="E-mail cím (maximum 63 karakter)" 
+              <input type="email" name="e-mail" maxlength="63" placeholder="E-mail cím (maximum 63 karakter)"
                 value="<?php if (isset($_SESSION["POST"]["e-mail"])) echo $_SESSION["POST"]["e-mail"]; ?>"
                 class="input <?php if (isset($_SESSION["error-field"]) && $_SESSION["error-field"] === "e-mail")
                   echo "input-error"; ?>">
@@ -30,16 +30,24 @@
                 class="input <?php if (isset($_SESSION["error-field"]) && $_SESSION["error-field"] === "password")
                   echo "input-error"; ?>">
             </div>
-            <div>          
-              <button type="submit" name="action" value="confirm" class="button confirm-button">Regisztrálok</button>                  
+            <div>
+              <input type="checkbox" id="allow-storage"/>
+              <span id="allow-storage-span">Hozzájárulok a megadott adatok tárolásához</span>
+            </div>
+            <div>
+              <input type="checkbox" id="allow-cookie"/>
+              <span id="allow-cookie-span">Süti engedélyezése a bejelentkezve maradáshoz</span>
+            </div>
+            <div>
+              <button type="submit" name="action" value="confirm" class="button confirm-button">Regisztrálok</button>
               <button type="submit" name="action" value="cancel" class="button cancel-button">Mégsem</button>
             </div>
-          </form>      
+          </form>
         </section>
         <div class="content-box-bottom"></div>
       </article>
     </div>
-    <?php unset($_SESSION["error"]);   
+    <?php unset($_SESSION["error"]);
     unset($_SESSION["error-field"]);
     unset($_SESSION["POST"]);
   }

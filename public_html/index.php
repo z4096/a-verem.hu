@@ -67,6 +67,8 @@ if (!isset($parameters[1]) || $parameters[1] == "") {
         ©Copyright 2050 by nobody. All rights reversed.
       </footer>
     </div>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js"></script>
+    <script type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?forceLang=hu&theme=altblack&refreshPage=1&top=1">
+    </script>
   </body>
 </html>

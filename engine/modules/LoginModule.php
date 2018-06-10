@@ -1,5 +1,5 @@
-<?php class LoginModule extends Module {		
-  
+<?php class LoginModule extends Module {
+
   public function render(&$parameters) { ?>
     <div class="sidebar-page">
       <article id="login-article">
@@ -9,7 +9,7 @@
           <?php endif; ?>
           <form method="post" action="/action/login">
             <div>
-              <input type="email" name="e-mail" maxlength="63" placeholder="E-mail cím" 
+              <input type="email" name="e-mail" maxlength="63" placeholder="E-mail cím"
                 value="<?php if (isset($_SESSION["POST"]["e-mail"])) echo $_SESSION["POST"]["e-mail"]; ?>"
                 class="input <?php if (isset($_SESSION["error-field"]) && $_SESSION["error-field"] === "e-mail")
                   echo "input-error"; ?>"/>
@@ -19,17 +19,21 @@
                 class="input <?php if (isset($_SESSION["error-field"]) && $_SESSION["error-field"] === "password")
                   echo "input-error"; ?>"/>
             </div>
-            <div>          
-              <button type="submit" name="action" value="confirm" class="button confirm-button">Bejelentkezem</button>                  
+            <div>
+              <input type="checkbox" id="allow-cookie"/>
+              <span id="allow-cookie-span">Süti engedélyezése a bejelentkezve maradáshoz</span>
+            </div>
+            <div>
+              <button type="submit" name="action" value="confirm" class="button confirm-button">Bejelentkezem</button>
               <button type="submit" name="action" value="cancel" class="button cancel-button">Mégsem</button>
             </div>
-          </form>      
+          </form>
         </section>
         <div class="content-box-bottom"></div>
       </article>
     </div>
-    <?php unset($_SESSION["error"]);          
-    unset($_SESSION["error-field"]);
-    unset($_SESSION["POST"]);
+    <?php if (isset($_SESSION["error"])) unset($_SESSION["error"]);
+    if (isset($_SESSION["error-field"])) unset($_SESSION["error-field"]);
+    if (isset($_SESSION["POST"])) unset($_SESSION["POST"]);
   }
 } ?>
