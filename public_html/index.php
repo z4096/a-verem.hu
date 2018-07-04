@@ -68,7 +68,7 @@ if (!isset($parameters[1]) || $parameters[1] == "") {
       </footer>
     </div>
     <script type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?forceLang=hu&theme=altblack&refreshPage=1&top=1">
+      src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?forceLang=hu&theme=altblack&always=1&refreshPage=1&top=1&remember=16384">
     </script>
   </body>
 </html>
