@@ -4,8 +4,8 @@
     if (!isset($parameters[2]) || !ctype_digit($parameters[2]) || $parameters[2] == 0) $this->notFound();
     $database = new Database();
     $database->doQuery("SELECT posts.id, posts.user_id, posts.reply_id, posts.post, posts.time, posts.edit_time, users.name,
-    DATE_SUB(NOW(), INTERVAL 15 MINUTE) AS time_limit FROM posts LEFT JOIN users ON users.id = posts.user_id
-    ORDER BY posts.time DESC LIMIT " . (($parameters[2] - 1) * 10) . ", 10");
+      DATE_SUB(NOW(), INTERVAL 15 MINUTE) AS time_limit FROM posts LEFT JOIN users ON users.id = posts.user_id
+      ORDER BY posts.time DESC LIMIT " . (($parameters[2] - 1) * 10) . ", 10");
     if ($parameters[2] != 1 && !$database->countRows()) $this->notFound();
     $topicRow = $database->fetchRows();
     $database->doQuery("SELECT COUNT(id) AS 'rows' FROM posts");
