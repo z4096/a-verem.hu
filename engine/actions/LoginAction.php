@@ -60,8 +60,8 @@
     if (isset($_COOKIE["cookiebar"]) && $_COOKIE["cookiebar"] == "CookieAllowed") {
       $_SESSION["user-id"] = $id;
       $_SESSION["user"] = $name;
-      setcookie("user_data", json_encode(array("user" => $name,
-        "password_hash" => password_hash($hash, PASSWORD_DEFAULT))), time() + 604800, "/");
+      if (isset($_POST["allow-cookie"])) setcookie("user_data", json_encode(array("user" => $name,
+          "password_hash" => password_hash($hash, PASSWORD_DEFAULT))), time() + 604800, "/");
       $_SESSION["returnUrl"] = $_SESSION["previousUrl"];
     }
     else $_SESSION["returnUrl"] = "/welcome";

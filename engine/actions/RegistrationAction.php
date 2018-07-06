@@ -1,22 +1,28 @@
-<?php class RegistrationAction extends Action {		  
-  
+<?php class RegistrationAction extends Action {
+
   public function process(&$parameters) {
     switch ($_POST["action"]) {
       case "cancel":
         $_SESSION["returnUrl"] = $_SESSION["previousUrl"];
       break;
       case "confirm":
-        $this->processRegistration(); 
+        $this->processRegistration();
       break;
     }
   }
-    
+
   private function processRegistration() {
     $_SESSION["POST"] = &$_POST;
+    if (!isset($_POST["allow-storage"])) {
+      $_SESSION["error"] = "Nem járultál hozzá a megadott adatok tárolásához!";
+      $_SESSION["error-field"] = "allow-storage";
+      $_SESSION["returnUrl"] = "/registration";
+      return;
+    }
     $database = new Database();
-    if (mb_strlen($_POST["name"]) && mb_strlen($_POST["name"]) < 16) {   
+    if (mb_strlen($_POST["name"]) && mb_strlen($_POST["name"]) < 16) {
       $nameLetters = "abcdefghijklmnopqrstuvwxyzáéíóöőüűABCDEFGHUJKLMNOPQRSTUVWXYZÁÉÍÓÖŐÜŰ";
-      for ($index = mb_strlen($_POST["name"]); $index--; ) {        
+      for ($index = mb_strlen($_POST["name"]); $index--; ) {
         if (mb_strpos($nameLetters, mb_substr($_POST["name"], $index, 1)) !== false) break;
       }
       if ($index === -1) {
@@ -26,8 +32,8 @@
         return;
       }
       $nameLetters .= "-_. ";
-      for ($index = mb_strlen($_POST["name"]); $index--; ) { 
-        if (mb_strpos($nameLetters, mb_substr($_POST["name"], $index, 1)) === false) {          
+      for ($index = mb_strlen($_POST["name"]); $index--; ) {
+        if (mb_strpos($nameLetters, mb_substr($_POST["name"], $index, 1)) === false) {
           $_SESSION["error"] = "Érvénytelen felhasználónév!";
           $_SESSION["error-field"] = "name";
           $_SESSION["returnUrl"] = "/registration";
@@ -38,11 +44,11 @@
       $_SESSION["error"] = "Érvénytelen felhasználónév!";
       $_SESSION["error-field"] = "name";
       $_SESSION["returnUrl"] = "/registration";
-      return; 
+      return;
     }
     $database->doQuery("SELECT name FROM users WHERE name='" . $_POST["name"] . "'");
     if ($database->countRows()) {
-      $_SESSION["error"] = "Ezen a néven már létezik felhasználó!"; 
+      $_SESSION["error"] = "Ezen a néven már létezik felhasználó!";
       $_SESSION["error-field"] = "name";
       $_SESSION["returnUrl"] = "/registration";
       return;
@@ -73,13 +79,13 @@
       $_SESSION["returnUrl"] = "/registration";
       return;
     }
-    $database->doQuery("INSERT INTO users (name, email, password_hash) VALUES ('" . $_POST["name"] . "', '" . 
+    $database->doQuery("INSERT INTO users (name, email, password_hash) VALUES ('" . $_POST["name"] . "', '" .
       $_POST["e-mail"] . "', '" . ($hash = password_hash($_POST["password"], PASSWORD_DEFAULT)) . "')");
     $database->doQuery("SELECT id FROM users WHERE email = '" . $_POST["e-mail"] . "'");
     $_SESSION["user-id"] = $database->fetchRows()[0]["id"];
     $_SESSION["user"] = $_POST["name"];
-    setcookie("user_data", json_encode(array("user" => $_POST["name"],
-      "password_hash" => password_hash($hash, PASSWORD_DEFAULT))), time() + 604800, "/");
+    if (isset($_POST["allow-cookie"])) setcookie("user_data", json_encode(array("user" => $_POST["name"],
+        "password_hash" => password_hash($hash, PASSWORD_DEFAULT))), time() + 604800, "/");
     $_SESSION["returnUrl"] = $_SESSION["previousUrl"];
     unset($_SESSION["POST"]);
   }

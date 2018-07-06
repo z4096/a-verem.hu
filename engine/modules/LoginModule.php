@@ -20,7 +20,7 @@
                   echo "input-error"; ?>"/>
             </div>
             <div>
-              <input type="checkbox" id="allow-cookie"/>
+              <input type="checkbox" id="allow-cookie" name="allow-cookie"/>
               <span id="allow-cookie-span">Süti engedélyezése a bejelentkezve maradáshoz</span>
             </div>
             <div>

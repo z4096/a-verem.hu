@@ -17,7 +17,7 @@
             <a href="/email-setting">E-mail cím beállítasa</a>
             <a href="/password-setting">Jelszó beállítasa</a>
             <a href="/action/cookie-delete">Sütik törlése</a>
-            <a href="/account-delete">Felhasználó törlése</a>
+            <a href="/account-delete">Fiók törlése</a>
             <?php else: ?>
             <a href="/login">Bejelentkezés</a>
             <a href="/registration">Regisztráció</a>

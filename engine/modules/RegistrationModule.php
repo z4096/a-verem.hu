@@ -31,11 +31,13 @@
                   echo "input-error"; ?>">
             </div>
             <div>
-              <input type="checkbox" id="allow-storage"/>
-              <span id="allow-storage-span">Hozzájárulok a megadott adatok tárolásához</span>
+              <input type="checkbox" id="allow-storage" name="allow-storage"/>
+              <span id="allow-storage-span" <?php if (isset($_SESSION["error-field"])
+                  && $_SESSION["error-field"] === "allow-storage") echo " class=input-error"; ?>>
+                Hozzájárulok a megadott adatok tárolásához</span>
             </div>
             <div>
-              <input type="checkbox" id="allow-cookie"/>
+              <input type="checkbox" id="allow-cookie" name="allow-cookie"/>
               <span id="allow-cookie-span">Süti engedélyezése a bejelentkezve maradáshoz</span>
             </div>
             <div>
