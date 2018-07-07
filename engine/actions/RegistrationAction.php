@@ -20,7 +20,7 @@
       return;
     }
     $database = new Database();
-    if (mb_strlen($_POST["name"]) && mb_strlen($_POST["name"]) < 16) {
+    if (mb_strlen($_POST["name"]) && mb_strlen($_POST["name"]) < 13) {
       $nameLetters = "abcdefghijklmnopqrstuvwxyzáéíóöőüűABCDEFGHUJKLMNOPQRSTUVWXYZÁÉÍÓÖŐÜŰ";
       for ($index = mb_strlen($_POST["name"]); $index--; ) {
         if (mb_strpos($nameLetters, mb_substr($_POST["name"], $index, 1)) !== false) break;

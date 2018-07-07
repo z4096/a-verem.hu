@@ -9,7 +9,7 @@
           <?php endif; ?>
           <form method="post" action="/action/registration">
             <div>
-              <input type="text" name="name" maxlength="15" placeholder="Felhasználónév (maximum 15 karakter)"
+              <input type="text" name="name" maxlength="12" placeholder="Felhasználónév (maximum 12 karakter)"
                 value="<?php if (isset($_SESSION["POST"]["name"])) echo $_SESSION["POST"]["name"]; ?>"
                 class="input <?php if (isset($_SESSION["error-field"]) && $_SESSION["error-field"] === "name")
                   echo "input-error"; ?>">
