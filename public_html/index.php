@@ -64,7 +64,7 @@ if (!isset($parameters[1]) || $parameters[1] == "") {
     </div>
     <div id="footer-container">
       <footer>
-        ©Copyright 2018 by Zoltán Bakonyi.
+        ©Copyright Bakonyi Zoltán 2018
       </footer>
     </div>
     <script type="text/javascript"

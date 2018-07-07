@@ -5,7 +5,7 @@ html, body {
   background-color: #182929;
 }
 
-#body-container {min-height: calc(100% - 70px);}
+#body-container {min-height: calc(100% - 40px);}
 
 nav {
   border-bottom: 1px solid white;
@@ -18,14 +18,14 @@ main {
 }
 
 #footer-container {
-  height: 70px;
+  height: 40px;
   border-top: 1px solid white;
   background-color: darkslategray;
 }
 
 footer {
   max-width: 1024px;
-  margin: auto;
+  margin: 10px auto auto auto;
   color: white;
 }
 

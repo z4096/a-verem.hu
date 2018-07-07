@@ -19,7 +19,7 @@
       $database->doQuery("SELECT id FROM users WHERE email = '" . $_POST["e-mail"] . "'");
       if ($database->countRows()) {
         $keyspace = "123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ";
-        for ($password = ""; $index = 8; $index--; ) $password .= $keyspace[random_int(0, strlen($keyspace))];
+        for ($password = "", $index = 8; $index--; ) $password .= $keyspace[random_int(0, strlen($keyspace))];
         $dataRow = $database->fetchRows();
         $database->doQuery("REPLACE INTO temporary_password SET user_id = " . $dataRow[0]["id"] . ", password_hash = '" .
           ($hash = password_hash($password, PASSWORD_DEFAULT)) . "', password_time = NOW()");
