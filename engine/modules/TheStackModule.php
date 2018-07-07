@@ -65,27 +65,39 @@
 
   private function &parsePost(&$post) {
     $post = nl2br(htmlspecialchars($post));
-    $post = str_replace("[B]", "<b>", $post);
-    $post = str_replace("[/B]", "</b>", $post);
-    $post = str_replace("[I]", "<i>", $post);
-    $post = str_replace("[/I]", "</i>", $post);
-    for ($post = str_replace("[/LINK]", "</a>", $post); $this->parseLink($post); );
+    $post = str_replace("[B]", "<b>", $post, $opening);
+    $post = str_replace("[/B]", "</b>", $post, $ending);
+    while ($opening > $ending++) $post .= "</b>";
+    $post = str_replace("[I]", "<i>", $post, $opening);
+    $post = str_replace("[/I]", "</i>", $post, $ending);
+    while ($opening > $ending++) $post .= "</i>";
+    for ($post = str_replace("[/LINK]", "</a>", $post, $ending), $opening = 0; $this->parseLink($post, $opening); );
+    while ($opening > $ending++) $post .= "</a>";
     while ($this->parseImage($post));
     while ($this->parseYoutube($post));
     return $post;
   }
 
-  private function parseLink(&$post) {
+  private function parseLink(&$post, &$opening) {
     if (($start = strpos($post, "[LINK=")) === false) return false;
-    $end = strpos($post, "]") + 1;
+    if (($end = strpos($post, "]", $start)) === false) {
+      $post .= "]";
+      $end = strpos($post, "]", $start);
+    }
+    $end++;
     $post = substr_replace($post,
       "<a href='" . substr($post, $start + 6, $end - $start - 7) . "' class='link'>", $start, $end - $start);
+    $opening++;
     return true;
   }
 
   private function parseImage(&$post) {
     if (($start = strpos($post, "[IMAGE]")) === false) return false;
-    $end = strpos($post, "[/IMAGE]") + 8;
+    if (($end = strpos($post, "[/IMAGE]")) === false) {
+      $post .= "[/IMAGE]";
+      $end = strpos($post, "[/IMAGE]");
+    }
+    $end += 8;
     $post = substr_replace($post,
       "<img src='" . substr($post, $start + 7, $end - $start - 15) . "' class='image'>", $start, $end - $start);
     return true;
@@ -93,9 +105,19 @@
 
   private function parseYoutube(&$post) {
     if (($start = strpos($post, "[YOUTUBE]")) === false) return false;
-    $end = strpos($post, "[/YOUTUBE]") + 10;
+    if (($end = strpos($post, "[/YOUTUBE]")) === false) {
+      $post .= "[/YOUTUBE]";
+      $end = strpos($post, "[/YOUTUBE]");
+    }
+    $end += 10;
+    if (($codePosition = strpos($post, "youtu.be/", $start + 9)) !== false && $codePosition < $end) $codePosition += 9;
+    else if (($codePosition = strpos($post, "v=", $start + 9)) !== false && $codePosition < $end) $codePosition += 2;
+    else {
+      $post = substr_replace($post, "", $start, $end - $start);
+      return true;
+    }
     $post = substr_replace($post, "<div class='youtube-container'><iframe src='https://www.youtube.com/embed/" .
-      substr($post, strpos($post, "v=", $start + 9) + 2, 11) .
+      substr($post, $codePosition, 11) .
       "' frameborder='0' allow='autoplay; encrypted-media' allowfullscreen class='video'></iframe></div>",
       $start, $end - $start);
     return true;
