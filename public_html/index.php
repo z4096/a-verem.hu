@@ -44,8 +44,8 @@ if (!isset($parameters[1]) || $parameters[1] == "") {
   <meta http-equiv="Cache-Control" content="max-age=3600"/>
   <meta name="expires" content="NEVER"/>
   <meta name="revisit-after" content="7 day"/>
-  <meta name="generator" content="Brackets"/>
-  <meta name="author" content=""/>
+  <meta name="generator" content="Atom"/>
+  <meta name="author" content="Bakonyi Zoltán"/>
   <meta name="keywords" content=""/>
   <meta name="description" content=""/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
