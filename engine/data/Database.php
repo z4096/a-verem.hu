@@ -1,6 +1,6 @@
-<?php class Database {
-  public $pdo;
-  private $result;
+<?php abstract class Database {
+  protected $pdo;
+  protected $statement;
 
   public function __construct() {
     try {
@@ -9,15 +9,8 @@
     } catch (PDOException $exception) {echo $exception->getMessage();}
   }
 
-  public function countRows() {return $this->result->rowCount();}
-
-  public function fetchRows() {
-	   try {return $this->result->fetchAll(PDO::FETCH_ASSOC);}
+  protected function fetchRows() {
+	   try {return $this->statement->fetchAll(PDO::FETCH_ASSOC);}
 	   catch (PDOException $exception) {echo $exception->getMessage();}
-  }
-
-  public function doQuery($query) {
-    try {$this->result = $this->pdo->query($query);}
-	  catch (PDOException $exception) {echo $exception->getMessage();}
   }
 } ?>

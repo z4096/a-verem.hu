@@ -10,6 +10,8 @@ spl_autoload_register(function($class) {
   if (file_exists($file)) require $file;
   $file = "../engine/actions/" . $class . ".php";
   if (file_exists($file)) require $file;
+  $file = "../engine/data/" . $class . ".php";
+  if (file_exists($file)) require $file;
 });
 (new Session())->run();
 $parameters = explode("/", $_SERVER["REQUEST_URI"]);

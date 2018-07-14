@@ -22,7 +22,7 @@
             <div>
               <input type="checkbox" id="allow-cookie" name="allow-cookie"/>
               <span id="allow-cookie-span">Süti engedélyezése a bejelentkezve maradáshoz</span>
-            </div>          
+            </div>
             <div>
               <button type="submit" name="action" value="confirm" class="button confirm-button">Mentés</button>
               <button type="submit" name="action" value="cancel" class="button cancel-button">Mégsem</button>

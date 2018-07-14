@@ -32,8 +32,8 @@
         <div class="content-box-bottom"></div>
       </article>
     </div>
-    <?php if (isset($_SESSION["error"])) unset($_SESSION["error"]);
-    if (isset($_SESSION["error-field"])) unset($_SESSION["error-field"]);
-    if (isset($_SESSION["POST"])) unset($_SESSION["POST"]);
+    <?php unset($_SESSION["error"]);
+    unset($_SESSION["error-field"]);
+    unset($_SESSION["POST"]);
   }
 } ?>

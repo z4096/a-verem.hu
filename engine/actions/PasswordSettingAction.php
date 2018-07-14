@@ -24,9 +24,8 @@
       $_SESSION["returnUrl"] = "/password-setting";
       return;
     }
-    $database = new Database();
-    $database->doQuery("UPDATE users SET password_hash = '" .
-      ($hash = password_hash($_POST["password"], PASSWORD_DEFAULT)) . "' WHERE id = " . $_SESSION["user-id"]);
+    $passwordSettingData = new PasswordSettingData();
+    $passwordSettingData->setPasswordHash($_SESSION["user-id"], $hash = password_hash($_POST["password"], PASSWORD_DEFAULT));
     setcookie("user_data", "", time() - 3600, "/");
     if (isset($_POST["allow-cookie"])) setcookie("user_data", json_encode(array("user" => $_POST["name"],
         "password_hash" => password_hash($hash, PASSWORD_DEFAULT))), time() + 604800, "/");

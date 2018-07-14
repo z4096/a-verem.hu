@@ -3,10 +3,8 @@
   public function render(&$parameters) {
     if (!isset($_SESSION["user-id"])) $this->notFound();
     if (!isset($_SESSION["POST"])) {
-      $database = new Database();
-      $database->doQuery("SELECT email FROM users WHERE id = " . $_SESSION["user-id"]);
-      if (!$database->countRows()) $this->notFound();
-      $email = $database->fetchRows()[0]["email"];
+      $accountDeleteData = new AccountDeleteData();
+      if (!($email = $accountDeleteData->getEmail($_SESSION["user-id"]))) $this->notFound();
     } ?>
     <div class="sidebar-page">
       <article id="login-article">
@@ -33,8 +31,5 @@
         <div class="content-box-bottom"></div>
       </article>
     </div>
-    <?php unset($_SESSION["error"]);
-    unset($_SESSION["error-field"]);
-    unset($_SESSION["POST"]);
-  }
+    <?php }
 } ?>

@@ -19,13 +19,12 @@
       $_SESSION["returnUrl"] = "/registration";
       return;
     }
-    $database = new Database();
     if (mb_strlen($_POST["name"]) && mb_strlen($_POST["name"]) < 13) {
       $nameLetters = "abcdefghijklmnopqrstuvwxyzáéíóöőüűABCDEFGHUJKLMNOPQRSTUVWXYZÁÉÍÓÖŐÜŰ";
       for ($index = mb_strlen($_POST["name"]); $index--; ) {
         if (mb_strpos($nameLetters, mb_substr($_POST["name"], $index, 1)) !== false) break;
       }
-      if ($index === -1) {
+      if ($index == -1) {
         $_SESSION["error"] = "Érvénytelen felhasználónév!";
         $_SESSION["error-field"] = "name";
         $_SESSION["returnUrl"] = "/registration";
@@ -46,8 +45,8 @@
       $_SESSION["returnUrl"] = "/registration";
       return;
     }
-    $database->doQuery("SELECT name FROM users WHERE name='" . $_POST["name"] . "'");
-    if ($database->countRows()) {
+    $registrationData = new RegistrationData();
+    if ($registrationData->isNameRegistered($_POST["name"])) {
       $_SESSION["error"] = "Ezen a néven már létezik felhasználó!";
       $_SESSION["error-field"] = "name";
       $_SESSION["returnUrl"] = "/registration";
@@ -60,8 +59,7 @@
       return;
     }
     else {
-      $database->doQuery("SELECT email FROM users WHERE email='" . $_POST["e-mail"] . "'");
-      if ($database->countRows()) {
+      if ($registrationData->isEmailRegistered($_POST["e-mail"])) {
         $_SESSION["error"] = "Az e-mail cím már regisztrálva lett!";
         $_SESSION["error-field"] = "e-mail";
         $_SESSION["returnUrl"] = "/registration";
@@ -79,10 +77,8 @@
       $_SESSION["returnUrl"] = "/registration";
       return;
     }
-    $database->doQuery("INSERT INTO users (name, email, password_hash) VALUES ('" . $_POST["name"] . "', '" .
-      $_POST["e-mail"] . "', '" . ($hash = password_hash($_POST["password"], PASSWORD_DEFAULT)) . "')");
-    $database->doQuery("SELECT id FROM users WHERE email = '" . $_POST["e-mail"] . "'");
-    $_SESSION["user-id"] = $database->fetchRows()[0]["id"];
+    $registrationData->addUser($_POST["name"], $_POST["e-mail"], $hash = password_hash($_POST["password"], PASSWORD_DEFAULT));
+    $_SESSION["user-id"] = $registrationData->getUserId($_POST["e-mail"]);
     $_SESSION["user"] = $_POST["name"];
     if (isset($_POST["allow-cookie"])) setcookie("user_data", json_encode(array("user" => $_POST["name"],
         "password_hash" => password_hash($hash, PASSWORD_DEFAULT))), time() + 604800, "/");

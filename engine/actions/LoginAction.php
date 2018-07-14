@@ -14,26 +14,15 @@
   private function processLogin() {
     $_SESSION["POST"] = &$_POST;
     if (strlen($_POST["e-mail"]) < 64 && filter_var($_POST["e-mail"], FILTER_VALIDATE_EMAIL)) {
-      $database = new Database();
-      $database->doQuery("SELECT id, name, password_hash FROM users WHERE email = '" . $_POST["e-mail"] . "'");
-      if ($database->countRows()) {
+      $loginData = new LoginData();
+      if ($userRow = $loginData->getUserData($_POST["e-mail"])) {
         if (strlen($_POST["password"]) > 7 && strlen($_POST["password"]) < 64) {
-          $userRow = $database->fetchRows();
-          if (password_verify($_POST["password"], $userRow[0]["password_hash"]))
-            $this->finishLogin($userRow[0]["id"], $userRow[0]["name"], $userRow[0]["password_hash"]);
+          if (password_verify($_POST["password"], $userRow["password_hash"]))
+            $this->finishLogin($userRow["id"], $userRow["name"], $userRow["password_hash"]);
           else {
-            $database->doQuery("SELECT password_hash FROM temporary_password WHERE user_id = " .
-              $userRow[0]["id"] . " AND password_time > DATE_SUB(NOW(), INTERVAL 1 HOUR)");
-            if ($database->countRows()) {
-              $dataRow = $database->fetchRows();
-              if (password_verify($_POST["password"], $dataRow[0]["password_hash"]))
-                $this->finishLogin($userRow[0]["id"], $userRow[0]["name"], $dataRow[0]["password_hash"]);
-              else {
-                $_SESSION["error"] = "Hibás jelszó!";
-                $_SESSION["error-field"] = "password";
-                $_SESSION["returnUrl"] = "/login";
-              }
-            } else {
+            if ($hash = $loginData->getTemporaryPassword($userRow["id"]) && password_verify($_POST["password"], $hash))
+              $this->finishLogin($userRow["id"], $userRow["name"], $hash);
+            else {
               $_SESSION["error"] = "Hibás jelszó!";
               $_SESSION["error-field"] = "password";
               $_SESSION["returnUrl"] = "/login";

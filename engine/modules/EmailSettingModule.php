@@ -1,14 +1,12 @@
-<?php class EmailSettingModule extends Module {		
-  
+<?php class EmailSettingModule extends Module {
+
   public function render(&$parameters) {
     if (!isset($_SESSION["user-id"])) $this->notFound();
     if (!isset($_SESSION["POST"])) {
-      $database = new Database();
-      $database->doQuery("SELECT email FROM users WHERE id = " . $_SESSION["user-id"]);
-      if (!$database->countRows()) $this->notFound();     
       $_SESSION["POST"] = array();
-      $_SESSION["POST"]["e-mail"] = $database->fetchRows()[0]["email"];
-    } ?>    
+      $emailSettingData = new EmailSettingData();
+      if (($_SESSION["POST"]["e-mail"] = $emailSettingData->getEmail($_SESSION["user-id"])) === false) $this->notFound();
+    } ?>
     <div class="sidebar-page">
       <article id="login-article">
         <section class="content-box">
@@ -23,17 +21,17 @@
               </div>
               <div class="row">
                 <div class="left-side">E-mail cím:</div>
-                <input type="email" name="e-mail" maxlength="63" placeholder="(maximum 63 karakter)" 
+                <input type="email" name="e-mail" maxlength="63" placeholder="(maximum 63 karakter)"
                   value="<?php if (isset($_SESSION["POST"]["e-mail"])) echo $_SESSION["POST"]["e-mail"] ?>"
                   class="right-side input <?php if (isset($_SESSION["error-field"]) && $_SESSION["error-field"] === "e-mail")
                     echo "input-error" ?>">
               </div>
-            </div>           
-            <div>          
-              <button type="submit" name="action" value="confirm" class="button confirm-button">Mentés</button>                  
+            </div>
+            <div>
+              <button type="submit" name="action" value="confirm" class="button confirm-button">Mentés</button>
               <button type="submit" name="action" value="cancel" class="button cancel-button">Mégsem</button>
             </div>
-          </form>   
+          </form>
         </section>
         <div class="content-box-bottom"></div>
       </article>

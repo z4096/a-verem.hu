@@ -12,8 +12,8 @@
   }
 
   private function processAccountDelete() {
-    $database = new Database();
-    $database->doQuery("UPDATE users SET email = 'deleted' WHERE id = " . $_SESSION["user-id"]);
+    $accountDeleteData = new AccountDeleteData();
+    $accountDeleteData->deleteEmail($_SESSION["user-id"]);
     session_destroy();
     setcookie("PHPSESSID", "", time() - 3600, "/");
     setcookie("cookiebar", "", time() - 3600, "/");
