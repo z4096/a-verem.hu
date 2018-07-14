@@ -15,7 +15,8 @@
     $_SESSION["POST"] = &$_POST;
     if (strlen($_POST["e-mail"]) < 64 && filter_var($_POST["e-mail"], FILTER_VALIDATE_EMAIL)) {
       $passwordSenderData = new PasswordSenderData();
-      if ($userId = $passwordSenderData->getUserId($_POST["e-mail"])) {
+      $userId = $passwordSenderData->getUserId($_POST["e-mail"]);
+      if ($userId) {
         $keyspace = "123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ";
         for ($password = "", $index = 8; $index--; ) $password .= $keyspace[random_int(0, strlen($keyspace))];
         $passwordSenderData->setTemporaryPassword($userId, $hash = password_hash($password, PASSWORD_DEFAULT));

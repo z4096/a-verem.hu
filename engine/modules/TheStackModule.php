@@ -4,7 +4,7 @@
     if (!isset($parameters[2]) || !ctype_digit($parameters[2]) || $parameters[2] == 0) $this->notFound();
     $theStackData = new TheStackData();
     $topicRow = $theStackData->getPosts($parameters[2]);
-    if ($parameters[2] != 1 && $topicRow === false) $this->notFound();
+    if ($parameters[2] != 1 && !$topicRow) $this->notFound();
     $rowCount = $theStackData->getCount();
     $pages = ($rowCount == 0 ? 1 : intdiv(($rowCount - 1), 10) + 1); ?>
     <article id="topics-article">

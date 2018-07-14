@@ -4,7 +4,8 @@
     if (!isset($_SESSION["user-id"]) || !isset($parameters[2])
       || !ctype_digit($parameters[2]) || $parameters[2] == 0) $this->notFound();
     $postData = new PostData();
-    if (!($postRow = $postData->getPost($parameters[2])) $this->notFound();
+    $postRow = $postData->getPost($parameters[2]);
+    if (!$postRow) $this->notFound();
     $date = explode(" ", $postRow["time"]);
     $date[1] = substr($date[1], 0, -3);
     if ($date[0] === date("Y-m-d")) $date[0] = "ma";

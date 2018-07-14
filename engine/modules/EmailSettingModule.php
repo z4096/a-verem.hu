@@ -5,7 +5,8 @@
     if (!isset($_SESSION["POST"])) {
       $_SESSION["POST"] = array();
       $emailSettingData = new EmailSettingData();
-      if (($_SESSION["POST"]["e-mail"] = $emailSettingData->getEmail($_SESSION["user-id"])) === false) $this->notFound();
+      $_SESSION["POST"]["e-mail"] = $emailSettingData->getEmail($_SESSION["user-id"]);
+      if (!$_SESSION["POST"]["e-mail"]) $this->notFound();
     } ?>
     <div class="sidebar-page">
       <article id="login-article">

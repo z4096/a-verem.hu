@@ -1,4 +1,4 @@
-<?php class EmailSettingData extends Database {
+<?php class PasswordSettingData extends Database {
 
   public function setPasswordHash($userId, $hash) {
     $this->statement = $this->pdo->prepare("UPDATE users SET password_hash = :hash WHERE id = :user_id");

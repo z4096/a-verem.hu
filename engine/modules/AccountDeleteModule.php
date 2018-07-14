@@ -4,7 +4,8 @@
     if (!isset($_SESSION["user-id"])) $this->notFound();
     if (!isset($_SESSION["POST"])) {
       $accountDeleteData = new AccountDeleteData();
-      if (!($email = $accountDeleteData->getEmail($_SESSION["user-id"]))) $this->notFound();
+      $email = $accountDeleteData->getEmail($_SESSION["user-id"]);
+      if (!$email) $this->notFound();
     } ?>
     <div class="sidebar-page">
       <article id="login-article">

@@ -1,4 +1,4 @@
-<?php class EmailSettingData extends Database {
+<?php class PasswordSenderData extends Database {
 
   public function getUserId($email) {
     $this->pdo->query("DELETE FROM temporary_password WHERE password_time < DATE_SUB(NOW(), INTERVAL 1 HOUR)");
