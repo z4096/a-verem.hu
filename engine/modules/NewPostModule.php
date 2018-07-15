@@ -1,6 +1,6 @@
-<?php class NewPostModule extends Module {		
+<?php class NewPostModule extends Module {
 
-  public function render(&$parameters) { ?>
+  public function render($parameters) { ?>
     <article id="topics-article">
       <section class="content-box">
         <?php if (isset($_SESSION["error"])): ?>

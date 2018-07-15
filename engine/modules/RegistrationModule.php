@@ -1,6 +1,6 @@
 <?php class RegistrationModule extends Module {
 
-  public function render(&$parameters) { ?>
+  public function render($parameters) { ?>
     <div class="sidebar-page">
       <article id="login-article">
         <section class="content-box">

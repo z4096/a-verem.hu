@@ -1,6 +1,6 @@
 <?php class EditPostModule extends Module {
 
-  public function render(&$parameters) {
+  public function render($parameters) {
     if (!isset($_SESSION["user-id"]) || !isset($parameters[2])
       || !ctype_digit($parameters[2]) || $parameters[2] == 0) $this->notFound();
     $postData = new PostData();

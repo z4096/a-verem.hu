@@ -1,6 +1,6 @@
 <?php class TheStackModule extends Module {
 
-  public function render(&$parameters) {
+  public function render($parameters) {
     if (!isset($parameters[2]) || !ctype_digit($parameters[2]) || $parameters[2] == 0) $this->notFound();
     $theStackData = new TheStackData();
     $topicRow = $theStackData->getPosts($parameters[2]);

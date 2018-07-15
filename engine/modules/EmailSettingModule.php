@@ -1,6 +1,6 @@
 <?php class EmailSettingModule extends Module {
 
-  public function render(&$parameters) {
+  public function render($parameters) {
     if (!isset($_SESSION["user-id"])) $this->notFound();
     if (!isset($_SESSION["POST"])) {
       $_SESSION["POST"] = array();

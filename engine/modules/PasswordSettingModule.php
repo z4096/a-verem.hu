@@ -1,6 +1,6 @@
 <?php class PasswordSettingModule extends Module {
 
-  public function render(&$parameters) {
+  public function render($parameters) {
     if (!isset($_SESSION["user-id"])) $this->notFound(); ?>
     <div class="sidebar-page">
       <article id="login-article">

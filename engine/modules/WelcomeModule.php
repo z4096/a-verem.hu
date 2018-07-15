@@ -1,6 +1,6 @@
 <?php class WelcomeModule extends Module {
 
-  public function render(&$parameters) { ?>
+  public function render($parameters) { ?>
     <article id="welcome">
       <section class="content-box">
         Üdvözlet!<br/>
