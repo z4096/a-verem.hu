@@ -59,7 +59,7 @@
     <?php $_SESSION["previousUrl"] = "/the-stack/" . $parameters[2];
   }
 
-  private function &parsePost(&$post) {
+  private function parsePost($post) {
     $post = nl2br(htmlspecialchars($post));
     $post = str_replace("[B]", "<b>", $post, $opening);
     $post = str_replace("[/B]", "</b>", $post, $ending);
