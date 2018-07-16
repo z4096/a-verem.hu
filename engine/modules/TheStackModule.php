@@ -1,12 +1,7 @@
 <?php class TheStackModule extends Module {
 
   public function render($parameters) {
-    if (!isset($parameters[2]) || !ctype_digit($parameters[2]) || $parameters[2] == 0) $this->notFound();
-    $theStackData = new TheStackData();
-    $topicRow = $theStackData->getPosts($parameters[2]);
-    if ($parameters[2] != 1 && !$topicRow) $this->notFound();
-    $rowCount = $theStackData->getCount();
-    $pages = ($rowCount == 0 ? 1 : intdiv(($rowCount - 1), 10) + 1); ?>
+    $this->setup($topicRow, $rowCount, $email, $pages, $parameters[2]); ?>
     <article id="topics-article">
       <div class="pager-bar-top">
         <?php ($pagerBar = new PagerBar())->render($pages, $parameters[2]); ?>
@@ -15,11 +10,7 @@
         <a href="/new-post" class="new-post">Új hozzászólás</a>
       <?php endif; ?>
       <?php for ($index = 0; $index != count($topicRow); $index++):
-        $date = explode(" ", $topicRow[$index]["time"]);
-        $date[1] = substr($date[1], 0, -3);
-        if ($date[0] === date("Y-m-d")) $date[0] = "ma";
-        elseif ($date[0] === date("Y-m-d", time() - 86400)) $date[0] = "tegnap";
-        else $date[1] = ""; ?>
+        $date = $this->parseDate($topicRow[$index]["time"]); ?>
         <section class="content-box">
           <div class="post-header">
             <div class="left-side">
@@ -42,11 +33,7 @@
           </div>
           <div class="post"><?php echo $this->parsePost($topicRow[$index]["post"]); ?></div>
           <?php if ($topicRow[$index]["edit_time"] != "0000-00-00 00:00:00"):
-            $date = explode(" ", $topicRow[$index]["edit_time"]);
-            $date[1] = substr($date[1], 0, -3);
-            if ($date[0] === date("Y-m-d")) $date[0] = "ma";
-            elseif ($date[0] === date("Y-m-d", time() - 86400)) $date[0] = "tegnap";
-            else $date[1] = "";?>
+            $date = $this->parseDate($topicRow[$index]["edit_time"]); ?>
             <div class="post-edited">szerkesztve: <?php echo $date[0] . " " . $date[1] ?></div>
           <?php endif; ?>
         </section>
@@ -57,6 +44,24 @@
       </div>
     </article>
     <?php $_SESSION["previousUrl"] = "/the-stack/" . $parameters[2];
+  }
+
+  private function setup(&$topicRow, &$rowCount, &$email, &$pages, $page) {
+    if (!isset($page) || !ctype_digit($page) || $page == 0) $this->notFound();
+    $theStackData = new TheStackData();
+    $topicRow = $theStackData->getPosts($page);
+    if ($page != 1 && !$topicRow) $this->notFound();
+    $rowCount = $theStackData->getCount();
+    $pages = ($rowCount == 0 ? 1 : intdiv(($rowCount - 1), 10) + 1);
+  }
+
+  private function parseDate($rowDate) {
+    $date = explode(" ", $rowDate);
+    $date[1] = substr($date[1], 0, -3);
+    if ($date[0] === date("Y-m-d")) $date[0] = "ma";
+    elseif ($date[0] === date("Y-m-d", time() - 86400)) $date[0] = "tegnap";
+    else $date[1] = "";
+    return $date;
   }
 
   private function parsePost($post) {

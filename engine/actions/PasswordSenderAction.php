@@ -1,6 +1,6 @@
 <?php class PasswordSenderAction extends Action {
 
-  public function process(&$parameters) {
+  public function process($parameters) {
     switch ($_POST["action"]) {
       case "cancel":
         $_SESSION["returnUrl"] = $_SESSION["previousUrl"];
@@ -12,7 +12,7 @@
   }
 
   private function processPasswordSender() {
-    $_SESSION["POST"] = &$_POST;
+    $_SESSION["POST"] = $_POST;
     if (strlen($_POST["e-mail"]) < 64 && filter_var($_POST["e-mail"], FILTER_VALIDATE_EMAIL)) {
       $passwordSenderData = new PasswordSenderData();
       $userId = $passwordSenderData->getUserId($_POST["e-mail"]);

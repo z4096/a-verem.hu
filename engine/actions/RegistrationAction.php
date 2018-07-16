@@ -1,6 +1,6 @@
 <?php class RegistrationAction extends Action {
 
-  public function process(&$parameters) {
+  public function process($parameters) {
     switch ($_POST["action"]) {
       case "cancel":
         $_SESSION["returnUrl"] = $_SESSION["previousUrl"];
@@ -12,7 +12,7 @@
   }
 
   private function processRegistration() {
-    $_SESSION["POST"] = &$_POST;
+    $_SESSION["POST"] = $_POST;
     if (!isset($_POST["allow-storage"])) {
       $_SESSION["error"] = "Nem járultál hozzá a megadott adatok tárolásához!";
       $_SESSION["error-field"] = "allow-storage";

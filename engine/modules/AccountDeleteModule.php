@@ -1,12 +1,7 @@
 <?php class AccountDeleteModule extends Module {
 
   public function render($parameters) {
-    if (!isset($_SESSION["user-id"])) $this->notFound();
-    if (!isset($_SESSION["POST"])) {
-      $accountDeleteData = new AccountDeleteData();
-      $email = $accountDeleteData->getEmail($_SESSION["user-id"]);
-      if (!$email) $this->notFound();
-    } ?>
+    $this->setup($email); ?>
     <div class="sidebar-page">
       <article id="login-article">
         <section class="content-box">
@@ -32,5 +27,12 @@
         <div class="content-box-bottom"></div>
       </article>
     </div>
-    <?php }
+  <?php }
+
+  private function setup(&$email) {
+    if (!isset($_SESSION["user-id"])) $this->notFound();
+    $accountDeleteData = new AccountDeleteData();
+    $email = $accountDeleteData->getEmail($_SESSION["user-id"]);
+    if (!$email) $this->notFound();
+  }
 } ?>

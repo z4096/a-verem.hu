@@ -1,6 +1,6 @@
 <?php class LoginAction extends Action {
 
-  public function process(&$parameters) {
+  public function process($parameters) {
     switch ($_POST["action"]) {
       case "cancel":
         $_SESSION["returnUrl"] = isset($_SESSION["previousUrl"]) ? $_SESSION["previousUrl"] : "/welcome";
@@ -12,7 +12,7 @@
   }
 
   private function processLogin() {
-    $_SESSION["POST"] = &$_POST;
+    $_SESSION["POST"] = $_POST;
     if (strlen($_POST["e-mail"]) < 64 && filter_var($_POST["e-mail"], FILTER_VALIDATE_EMAIL)) {
       $loginData = new LoginData();
       if ($userRow = $loginData->getUserData($_POST["e-mail"])) {

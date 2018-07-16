@@ -1,13 +1,7 @@
 <?php class EmailSettingModule extends Module {
 
   public function render($parameters) {
-    if (!isset($_SESSION["user-id"])) $this->notFound();
-    if (!isset($_SESSION["POST"])) {
-      $_SESSION["POST"] = array();
-      $emailSettingData = new EmailSettingData();
-      $_SESSION["POST"]["e-mail"] = $emailSettingData->getEmail($_SESSION["user-id"]);
-      if (!$_SESSION["POST"]["e-mail"]) $this->notFound();
-    } ?>
+    $this->setup(); ?>
     <div class="sidebar-page">
       <article id="login-article">
         <section class="content-box">
@@ -37,8 +31,16 @@
         <div class="content-box-bottom"></div>
       </article>
     </div>
-    <?php unset($_SESSION["error"]);
-    unset($_SESSION["error-field"]);
-    unset($_SESSION["POST"]);
+    <?php parent::clear();
+  }
+
+  private function setup() {
+    if (!isset($_SESSION["user-id"])) $this->notFound();
+    if (!isset($_SESSION["POST"])) {
+      $_SESSION["POST"] = array();
+      $emailSettingData = new EmailSettingData();
+      $_SESSION["POST"]["e-mail"] = $emailSettingData->getEmail($_SESSION["user-id"]);
+      if (!$_SESSION["POST"]["e-mail"]) $this->notFound();
+    }
   }
 } ?>

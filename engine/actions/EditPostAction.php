@@ -1,6 +1,6 @@
 <?php class EditPostAction extends Action {
 
-  public function process(&$parameters) {
+  public function process($parameters) {
     switch ($_POST["action"]) {
       case "cancel":
         $_SESSION["returnUrl"] = $_SESSION["previousUrl"];
@@ -11,8 +11,8 @@
     }
   }
 
-  private function processEditPost(&$parameters) {
-    $_SESSION["POST"] = &$_POST;
+  private function processEditPost($parameters) {
+    $_SESSION["POST"] = $_POST;
     if (isset($parameters[3]) && ctype_digit($parameters[3]) && $parameters[3] != 0) {
       $postData = new PostData();
       if ($postData->isPostExists($parameters[3], $_SESSION["user-id"])) {

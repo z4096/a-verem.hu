@@ -1,6 +1,6 @@
 <?php class PasswordSettingAction extends Action {
 
-  public function process(&$parameters) {
+  public function process($parameters) {
     switch ($_POST["action"]) {
       case "cancel":
         $_SESSION["returnUrl"] = $_SESSION["previousUrl"];
@@ -12,7 +12,7 @@
   }
 
   private function processPasswordSetting() {
-    $_SESSION["POST"] = &$_POST;
+    $_SESSION["POST"] = $_POST;
     if(strlen($_POST["password"]) < 8 || strlen($_POST["password"]) > 63 || !ctype_alnum($_POST["password"])) {
       $_SESSION["error"] = "Érvénytelen jelszó!";
       $_SESSION["error-field"] = "password";

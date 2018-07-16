@@ -1,6 +1,6 @@
 <?php class EmailSettingAction extends Action {
 
-  public function process(&$parameters) {
+  public function process($parameters) {
     switch ($_POST["action"]) {
       case "cancel":
         $_SESSION["returnUrl"] = $_SESSION["previousUrl"];
@@ -12,7 +12,7 @@
   }
 
   private function processEmailSetting() {
-    $_SESSION["POST"] = &$_POST;
+    $_SESSION["POST"] = $_POST;
     if (strlen($_POST["e-mail"]) > 63 || !filter_var($_POST["e-mail"], FILTER_VALIDATE_EMAIL)) {
       $_SESSION["error"] = "Érvénytelen e-mail cím!";
       $_SESSION["error-field"] = "e-mail";

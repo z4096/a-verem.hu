@@ -12,8 +12,6 @@
       </section>
       <div class="content-box-bottom"></div>
     </article>
-    <?php unset($_SESSION["error"]);
-    unset($_SESSION["error-field"]);
-    unset($_SESSION["POST"]);
+    <?php parent::clear();
   }
 } ?>

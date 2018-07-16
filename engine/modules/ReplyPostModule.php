@@ -1,16 +1,7 @@
 <?php class ReplyPostModule extends Module {
 
   public function render($parameters) {
-    if (!isset($_SESSION["user-id"]) || !isset($parameters[2])
-      || !ctype_digit($parameters[2]) || $parameters[2] == 0) $this->notFound();
-    $postData = new PostData();
-    $postRow = $postData->getPost($parameters[2]);
-    if (!$postRow) $this->notFound();
-    $date = explode(" ", $postRow["time"]);
-    $date[1] = substr($date[1], 0, -3);
-    if ($date[0] === date("Y-m-d")) $date[0] = "ma";
-    elseif ($date[0] === date("Y-m-d", time() - 86400)) $date[0] = "tegnap";
-    else $date[1] = ""; ?>
+    $this->setup($postRow, $date, $parameters[2]); ?>
     <article id="topics-article">
       <section class="content-box">
         <?php if (isset($_SESSION["error"])): ?>
@@ -36,8 +27,18 @@
       </section>
       <div class="content-box-bottom"></div>
     </article>
-    <?php unset($_SESSION["error"]);
-    unset($_SESSION["error-field"]);
-    unset($_SESSION["POST"]);
+    <?php parent::clear();
+  }
+
+  private function setup(&$postRow, &$date, $postId) {
+    if (!isset($_SESSION["user-id"]) || !isset($postId) || !ctype_digit($postId) || $postId == 0) $this->notFound();
+    $postData = new PostData();
+    $postRow = $postData->getPost($postId);
+    if (!$postRow) $this->notFound();
+    $date = explode(" ", $postRow["time"]);
+    $date[1] = substr($date[1], 0, -3);
+    if ($date[0] === date("Y-m-d")) $date[0] = "ma";
+    elseif ($date[0] === date("Y-m-d", time() - 86400)) $date[0] = "tegnap";
+    else $date[1] = "";
   }
 } ?>
