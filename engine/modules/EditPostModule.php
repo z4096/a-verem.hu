@@ -29,7 +29,7 @@
   }
 
   private function setup(&$postRow, &$date, $postId) {
-    if (!isset($_SESSION["user-id"]) || !isset($postId) || !ctype_digit($postId || $postId == 0) $this->notFound();
+    if (!isset($_SESSION["user-id"]) || !isset($postId) || !ctype_digit($postId) || $postId == 0) $this->notFound();
     $postData = new PostData();
     $postRow = $postData->getPost($postId);
     if (!$postRow) $this->notFound();
